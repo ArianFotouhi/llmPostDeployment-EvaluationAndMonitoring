@@ -1,16 +1,17 @@
 # 📊 llmPostDeployment-EvaluationAndMonitoring
 
-**End-to-end framework for evaluating and monitoring LLM responses post-deployment using Retrieval-Augmented Generation (RAG), OpenAI models, Pinecone, and Arize Phoenix.**
+**End-to-end framework for evaluating and continuous monitoring LLM responses post-deployment using Retrieval-Augmented Generation (RAG), OpenAI models, Pinecone, and Arize Phoenix.**
 
 ---
 
 ## 🚀 Overview
 
-This project provides a robust pipeline to:
-- Retrieve reference knowledge using Pinecone RAG
-- Generate model responses via OpenAI
-- Evaluate response quality using Arize Phoenix
-- Score and label responses for QA, monitoring, and continuous improvement
+This project provides a robust pipeline for post-deployment continuous monitoring and evaluation:
+- Retrieve reference knowledge (ground truth) using Pinecone RAG
+- Generate model responses via the product LLM model 
+- Evaluate response quality (correctness, hallucination, bias, etc.)
+- Demonstrates metrics, e.g., latency, token counter, requests status, etc.
+- Monitors and alerts in case of metrics exceeding, e.g., high latency in model inference
 
 ---
 
