@@ -106,8 +106,11 @@ python3 -m unittest test_main.py
 
 ## 🔍 Using Arize AI for Model Monitoring, Tracing & Evaluation
 
+### Dashboard
 ![Arize Dashboard](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/main/assets/ArizeAI_dashboard.png)
+### Continuous Monitoring
 ![Arize Monitoring](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/main/assets/ArizeAI_monitoring.png)
+### LLM Tracibility
 ![Arize Tracibility](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/main/assets/ArizeAI_tracability.png)
 
 
