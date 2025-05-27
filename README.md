@@ -115,9 +115,6 @@ python3 -m unittest test_main.py
 ![Arize Tracibility](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/main/assets/ArizeAI_tracability.png)
 
 
-**Arize AI** offers an end-to-end observability platform for machine learning models in production. It enables you to:
-
----
 
 ### 1. 📊 Monitor Model Health
 
@@ -163,6 +160,6 @@ Arize supports both manual and automated evaluations through:
 
 This helps you maintain model accuracy and consistency even as your deployment scales.
 
----
+
 
 
