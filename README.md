@@ -1,165 +1,75 @@
-# 📊 llmPostDeployment-EvaluationAndMonitoring
+bash
+bash
+bash
+# 🧠 LLM QA Evaluation App with LangSmith
 
-**End-to-end framework for evaluating and continuous monitoring LLM responses post-deployment using Retrieval-Augmented Generation (RAG), OpenAI models, Pinecone, and Arize Phoenix.**
-
----
-
-## 🚀 Overview
-
-This project provides a robust pipeline for post-deployment continuous monitoring and evaluation:
-- Retrieve reference knowledge (ground truth) using Pinecone RAG
-- Generate model responses via the product LLM model 
-- Evaluate response quality (correctness, hallucination, bias, etc.)
-- Demonstrates metrics, e.g., latency, token counter, requests status, etc.
-- Monitors and alerts in case of metrics exceeding, e.g., high latency in model inference
+This app provides a modular workflow for evaluating Question-Answering (QA) chains using OpenAI's GPT-4 and [LangSmith](https://smith.langchain.com). It enables you to ingest datasets, run LLM evaluations, and view analytics—all with clear separation of concerns.
 
 ---
 
-## 📁 Project Structure
+## 🚀 Key Features
 
-```
-
-llmPostDeployment-EvaluationAndMonitoring/
-├── config.py                       # To handle the API keys
-├── main.py                        # Core RAG + Evaluation pipeline (class-based)
-├── test\_main.py                   # Unit tests for pipeline
-├── vectorStore/
-│   ├── vector\_store.py            # Pinecone wrapper for indexing/search
-│   └── vector\_store\_init.py       # (Optional) Pinecone index creation/init
-├── example/
-│   └── example.ipynb              # Notebook for experiments
-
-````
+- **Dataset Ingestion:** Easily reset and populate your QA dataset for repeatable, reliable testing.
+- **LLM Evaluation:** Run LLMs on your dataset and score outputs using LangSmith's `qa` evaluator (LLM-as-a-Judge).
+- **Analytics & Debugging:** Get instant feedback on run success, errors, and sample results in your terminal, plus full trace and evaluation in the LangSmith UI.
+- **Modular Design:** Clean separation between data ingestion, evaluation logic, and app entry point for easy extension and maintenance.
 
 ---
 
-## ⚙️ Setup
+## 🧱 Tech Stack
 
-### 1. Install dependencies
+- [LangChain](https://www.langchain.com/)
+- [OpenAI GPT-4](https://platform.openai.com/)
+- [LangSmith](https://smith.langchain.com/)
+- Python 3.10+
 
-```bash
-pip install openai arize openinference-instrumentation-openai arize-phoenix-evals pandas arize-otel
-````
+---
 
-### 2. Add your credentials to `config.py`
+## 📂 Project Structure
 
-```python
-openai_api_key = "sk-..."
-arizeai_api_key = "rz_..."
-arizeai_proj_name = "My LLM Project"
-arizeai_spid = "space_id_here"
-pinecone_api_key = "pc_..."
-pinecone_index_name = "index-policies"
+```text
+main.py             # Entry point: runs data ingestion and evaluation
+llm_evaluator.py    # LLMRunEvaluator class: builds chain, runs evaluation, prints analytics
+data_ingestor.py    # DatasetIngestor class: resets and populates dataset
+README.md           # You're reading it!
 ```
 
 ---
 
-## 🧠 What It Does
+## ⚡️ Quickstart
 
-1. Takes a batch of prompts.
-2. Retrieves relevant context chunks from Pinecone (RAG).
-3. Feeds the context into the developed LLM to generate a response.
-4. Evaluates each response using LLM-as-a-Judge QA evaluator.
-5. Returns:
+1. **Install dependencies:**
+   ```bash
+   pip install langchain langsmith openai
+   ```
 
-   * ✅ Prompt
-   * 📚 Retrieved Reference
-   * 🤖 Model Output
-   * 🏷️ Label (`correct` / `incorrect`)
-   * 📈 Score 
-   * 🧾 Explanation
+2. **Set your environment variables:**
+   ```bash
+   export OPENAI_API_KEY="your-openai-key"
+   export LANGSMITH_API_KEY="your-langsmith-key"
+   export LANGSMITH_ENDPOINT="https://api.smith.langchain.com"
+   export LANGSMITH_PROJECT="pr-large-ladybug-30"
+   ```
 
----
-
-## ✅ Example Output
-
-```
---- Prompt 1 ---
-Prompt: How long do I have to request a refund?
-Reference: Refunds must be requested within 30 days of the original transaction.
-Model Output: Within 30 days of the original transaction.
-Label: correct
-Score: 1
-Explanation: The answer exactly matches the reference text.
-```
+3. **Run the app:**
+   ```bash
+   python main.py
+   ```
 
 ---
 
-## 🧪 Testing
+## 📊 Viewing Results in LangSmith
 
-Run full unit tests:
-
-```bash
-python3 -m unittest test_main.py
-```
-
-### What’s tested:
-
-* Structure and content of evaluation results
-* Labels are valid (`CORRECT`, `INCORRECT`, `PARTIALLY_CORRECT`)
-* Scores are within range (0.0 to 1.0)
-* Batch output matches input count
+- **Project Dashboard:** https://smith.langchain.com
+- **Your Dataset:** Find "Trivia QA" under the "Datasets" section
+- **Evaluation Results:** Go to your dataset > "Compare" or "Evaluations" tab
+- **Run Traces & Errors:** Projects > [Your Project] > Runs (filter by error for debugging)
 
 ---
 
+## 🧠 Example Questions Evaluated
 
-
-
-## 🔍 Using Arize AI for Model Monitoring, Tracing & Evaluation
-
-### Dashboard
-![Arize Dashboard](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/main/assets/ArizeAI_dashboard.png)
-### Continuous Monitoring
-![Arize Monitoring](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/main/assets/ArizeAI_monitoring.png)
-### LLM Tracibility
-![Arize Tracibility](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/main/assets/ArizeAI_tracability.png)
-
-
-
-### 1. 📊 Monitor Model Health
-
-You can track critical metrics like:
-
-- **Token usage** (prompt, completion, total)
-- **Latency** (P50, P99, etc.)
-- **Custom thresholds** to detect drift or quality drops
-
-Dashboards provide **hourly and daily trends** across model versions to detect anomalies, usage spikes, or latency issues. You can set up monitors that trigger alerts when values cross thresholds (e.g., `latency_ms > 5227`).
-
-#### ⏱ What Is Latency (P50, P99, etc.)?
-
-Latency metrics show how long the model takes to respond. Percentile-based latency gives insight into both average and worst-case performance:
-
-- **P50 latency = 1.5 seconds** → Half of the responses are faster than 1.5s
-- **P99 latency = 18 seconds** → 1 in 100 requests could take up to 18s, which may impact user experience
-
-These are critical for identifying **performance bottlenecks** and **outlier behavior**.
-
----
-
-### 2. 🔎 Trace LLM Activity
-
-Every model interaction (trace) is logged with:
-
-- Input/output data
-- Token counts
-- Response time
-- Evaluation status (e.g., `"qa correct"`)
-
-This allows you to **audit and debug** requests, trace performance regressions, and correlate usage patterns with output quality.
-
----
-
-### 3. 🧪 Evaluate Responses at Scale
-
-Arize supports both manual and automated evaluations through:
-
-- **Eval pipelines** (e.g., tagging correct/incorrect completions)
-- **Labeling queues**
-- **Custom metrics** for output quality
-
-This helps you maintain model accuracy and consistency even as your deployment scales.
-
-
-
+- What is the capital of Germany? → Berlin
+- Who wrote Hamlet? → William Shakespeare
+- What is the speed of light in vacuum? → 299,792,458 m/s
 
