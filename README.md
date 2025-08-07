@@ -20,15 +20,6 @@ This app is fully instrumented with **LangSmith**, enabling:
 It provides crucial info regarding **Latency**, **Evaluation Results** and **Token usuage**.
 ---
 
-## 🧱 Tech Stack
-
-- [LangChain](https://www.langchain.com/)
-- [OpenAI GPT-4](https://platform.openai.com/)
-- [LangSmith](https://smith.langchain.com/)
-- Python 3.10+
-
----
-
 ## 📂 Project Structure
 
 ```text
@@ -61,6 +52,11 @@ README.md           # You're reading it!
    ```
 
 ---
+
+## 🖥️ Dashboard Screenshots
+![Alt text](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/Langsmith/assets/1-langsmith.png)
+![Alt text](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/Langsmith/assets/2-langsmith.png)
+![Alt text](https://github.com/ArianFotouhi/llmPostDeployment-EvaluationAndMonitoring/blob/Langsmith/assets/3-langsmith.png) 
 
 ## 📊 Viewing Results in LangSmith
 
