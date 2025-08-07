@@ -1,4 +1,4 @@
-# 🧠 LLM QA Evaluation App with LangSmith
+# LLM QA Evaluation App with LangSmith
 
 This app provides a modular workflow for evaluating Question-Answering (QA) chains using OpenAI's GPT-4 and [LangSmith](https://smith.langchain.com). It enables you to ingest datasets, run LLM evaluations, and view analytics—all with clear separation of concerns.
 
