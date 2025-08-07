@@ -1,18 +1,22 @@
-bash
-bash
-bash
 # 🧠 LLM QA Evaluation App with LangSmith
 
 This app provides a modular workflow for evaluating Question-Answering (QA) chains using OpenAI's GPT-4 and [LangSmith](https://smith.langchain.com). It enables you to ingest datasets, run LLM evaluations, and view analytics—all with clear separation of concerns.
 
 ---
 
-## 🚀 Key Features
+This app is fully instrumented with **LangSmith**, enabling:
 
-- **Dataset Ingestion:** Easily reset and populate your QA dataset for repeatable, reliable testing.
-- **LLM Evaluation:** Run LLMs on your dataset and score outputs using LangSmith's `qa` evaluator (LLM-as-a-Judge).
-- **Analytics & Debugging:** Get instant feedback on run success, errors, and sample results in your terminal, plus full trace and evaluation in the LangSmith UI.
-- **Modular Design:** Clean separation between data ingestion, evaluation logic, and app entry point for easy extension and maintenance.
+| Feature                      | What You Get                                                  | Where to Find in LangSmith UI |
+|-----------------------------|---------------------------------------------------------------|--------------------------------|
+| **1. Tracing & Debugging**   | View full trace of each run (input, output, prompt, time)     | `Projects > [Your Project] > Runs` |
+| **2. Evaluation (LLM-as-Judge)** | Automated correctness scoring using GPT-4                  | `Datasets > [Your Dataset] > Evaluations` |
+| **3. Dataset Management**    | Manage inputs & expected outputs for repeatable testing       | `Datasets > Trivia QA` |
+| **4. Model Comparison**      | Compare outputs across models or versions                    | `Datasets > Compare` |
+| **5. Error Monitoring**      | Catch failed runs and view error messages                     | `Projects > [Your Project] > Runs > Filter by Error` |
+| **6. Performance Monitoring**| View latency and runtime statistics                           | `Runs Table > Execution Time Column` |
+| **7. Team Sharing**          | Share dashboards with collaborators                           | `Share` buttons in datasets, projects, or runs |
+
+
 
 ---
 
