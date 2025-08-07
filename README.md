@@ -17,7 +17,7 @@ This app is fully instrumented with **LangSmith**, enabling:
 | **7. Team Sharing**          | Share dashboards with collaborators                           | `Share` buttons in datasets, projects, or runs |
 
 
-
+It provides crucial info regarding **Latency**, **Evaluation Results** and **Token usuage**.
 ---
 
 ## 🧱 Tech Stack
